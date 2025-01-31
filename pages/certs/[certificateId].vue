@@ -4,7 +4,7 @@
 </template>
 
 <script setup lang="ts">
-const router = useRouter()
+const route = useRoute()
 
 interface PublicPathwayCertificateDto {
   certificateId: string
@@ -17,7 +17,7 @@ const data = ref<PublicPathwayCertificateDto | null>(null)
 
 onBeforeMount(async () => {
   // return a dictionary of cohorts
-  const certificateid = '1'
+  const certificateid = route.params.certificateId
   const contentHeaders = new Headers({
     'X-KINNU-CLIENT-VERSION': `1`,
   })
