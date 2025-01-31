@@ -9,6 +9,21 @@
 <script setup lang="ts">
 const router = useRouter()
 
+interface PublicPathwayCertificateDto {
+  certificateId: string
+  userName: String
+  certificateImageMediaId: string
+  certificatePdfMediaId: string
+}
+
+useSeoMeta({
+  title: 'My Amazing Site',
+  ogTitle: 'My Amazing Site',
+  description: 'This is my amazing site, let me tell you all about it.',
+  ogDescription: 'This is my amazing site, let me tell you all about it.',
+  ogImage: 'https://example.com/image.png',
+  twitterCard: 'summary_large_image',
+})
 
 const { data } = useAsyncData(
   `test`,
@@ -20,7 +35,7 @@ const { data } = useAsyncData(
     })
 
     try {
-      const d = await $fetch(`https://api.v2.kinnu.xyz/certification/pathway-certificate/public/${certificateid}`, {
+      const d = await $fetch<PublicPathwayCertificateDto>(`https://api.v2.kinnu.xyz/certification/pathway-certificate/public/${certificateid}`, {
         headers: contentHeaders,
       })
       console.log(d)
